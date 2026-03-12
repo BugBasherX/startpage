@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab</title>
+    <style>
+        /* --- CSS STYLES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --accent-color: #00d2ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            /* Dynamic Background Image */
+            background: url('https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        /* Dark overlay to make text pop */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        /* Glassmorphism Card */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Clock Styles */
+        #clock {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        #date {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Search Bar Styles */
+        .search-box {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-box input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        /* Quick Links Grid */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .link-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .link-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .link-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            #clock { font-size: 3.5rem; }
+            .links-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="glass-panel">
+            <!-- Clock Section -->
+            <div id="clock">00:00</div>
+            <div id="date">Loading date...</div>
+
+            <!-- Search Section -->
+            <form action="https://www.google.com/search" method="GET" class="search-box">
+                <input type="text" name="q" placeholder="Search Google..." autocomplete="off" autofocus>
+            </form>
+
+            <!-- Quick Links Section -->
+            <div class="links-grid">
+                <a href="https://youtube.com" target="_blank" class="link-item">
+                    <span class="link-icon">▶</span>
+                    <span class="link-text">YouTube</span>
+                </a>
+                <a href="https://github.com" target="_blank" class="link-item">
+                    <span class="link-icon">⌘</span>
+                    <span class="link-text">GitHub</span>
+                </a>
+                <a href="https://pinterest.com" target="_blank" class="link-item">
+                    <span class="link-icon"><i class="fab fa-pinterest"></i></span>
+                    <span class="link-text">Pinterest</span>
+                </a>
+                <a href="https://gmail.com" target="_blank" class="link-item">
+                    <span class="link-icon">✉</span>
+                    <span class="link-text">Gmail</span>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="link-item">
+                    <span class="link-icon"><i class="fab fa-twitter"></i></span>
+                    <span class="link-text">Twitter</span>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="link-item">
+                    <span class="link-icon"><i class="fab fa-facebook"></i></span>
+                    <span class="link-text">Facebook</span>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="link-item">
+                    <span class="link-icon"><i class="fab fa-instagram"></i></span>
+                    <span class="link-text">Instagram</span>
+                </a>
+                <a href="https://freecodecamp.org" target="_blank" class="link-item">
+                    <span class="link-icon"><i class="fab fa-free-code-camp"></i></span>
+                    <span class="link-text">FreeCodeCamp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* --- JAVASCRIPT --- */
+        
+        function updateClock() {
+            const now = new Date();
+            
+            // Time
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            // 12-hour format
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+            
+            document.getElementById('clock').innerText = `${hours}:${minutes} ${ampm}`;
+
+            // Date
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            document.getElementById('date').innerText = now.toLocaleDateString('en-US', options);
+        }
+
+        // Update clock immediately and then every second
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

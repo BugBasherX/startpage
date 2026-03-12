@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuvraj</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --glass-bg: rgba(0, 0, 0, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --accent-color: #4facfe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: url('https://4kwallpapers.com/images/walls/thumbs_3t/25387.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            transition: background 1s ease;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .clock {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .date {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            padding-left: 50px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box input:focus {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .link-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            transition: 0.2s;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .link-item i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .link-item span {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .weather {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .greeting {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+
+
+        @media (max-width: 600px) {
+            .clock { font-size: 3.5rem; }
+            .links-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .container { padding: 1.5rem; width: 95%; }
+            .weather { bottom: 10px; right: 10px; padding: 8px 15px; font-size: 0.8rem; }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="clock" id="clock">00:00:00</div>
+        <div class="date" id="date">Loading date...</div>
+        <div class="greeting" id="greeting">Good morning!</div>
+
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <form action="https://www.google.com/search" method="get">
+                <input type="text" name="q" placeholder="Search Google..." autocomplete="off" autofocus>
+            </form>
+        </div>
+
+        <div class="links-grid">
+            <a href="https://www.youtube.com" class="link-item" target="_blank">
+                <i class="fab fa-youtube" style="color: #ff0000;"></i>
+                <span>YouTube</span>
+            </a>
+            <a href="https://www.reddit.com" class="link-item" target="_blank">
+                <i class="fab fa-reddit" style="color: #ff4500;"></i>
+                <span>Reddit</span>
+            </a>
+            <a href="https://github.com" class="link-item" target="_blank">
+                <i class="fab fa-github" style="color: #ffffff;"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://mail.google.com" class="link-item" target="_blank">
+                <i class="fas fa-envelope" style="color: #4facfe;"></i>
+                <span>Gmail</span>
+            </a>
+            <a href="https://twitter.com" class="link-item" target="_blank">
+                <i class="fab fa-twitter" style="color: #1da1f2;"></i>
+                <span>Twitter</span>
+            </a>
+            <a href="https://www.amazon.com" class="link-item" target="_blank">
+                <i class="fab fa-amazon" style="color: #ff9900;"></i>
+                <span>Amazon</span>
+            </a>
+            <a href="https://www.spotify.com" class="link-item" target="_blank">
+                <i class="fab fa-spotify" style="color: #1db954;"></i>
+                <span>Spotify</span>
+            </a>
+            <a href="https://www.netflix.com" class="link-item" target="_blank">
+                <i class="fas fa-film" style="color: #e50914;"></i>
+                <span>Netflix</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="weather">
+        <i class="fas fa-cloud-sun"></i>
+        <span></span>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+
+            updateGreeting(now.getHours());
+        }
+
+        function updateGreeting(hour) {
+            let greeting = "Good morning!";
+            if (hour >= 12 && hour < 18) greeting = "Good afternoon!";
+            else if (hour >= 18) greeting = "Good evening!";
+            document.getElementById('greeting').textContent = greeting;
+        }
+
+        function fetchWeather() {
+            // Get user's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        
+                        // Fetch weather using Open-Meteo API (free, no API key needed)
+                        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day&temperature_unit=fahrenheit`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const temp = Math.round(data.current.temperature_2m);
+                                const weatherCode = data.current.weather_code;
+                                const isDay = data.current.is_day;
+                                
+                                // Map weather codes to icons and descriptions
+                                const weatherMap = {
+                                    0: { icon: 'fas fa-sun', desc: 'Clear' },
+                                    1: { icon: 'fas fa-cloud-sun', desc: 'Mostly Clear' },
+                                    2: { icon: 'fas fa-cloud', desc: 'Partly Cloudy' },
+                                    3: { icon: 'fas fa-cloud', desc: 'Cloudy' },
+                                    45: { icon: 'fas fa-cloud', desc: 'Foggy' },
+                                    48: { icon: 'fas fa-cloud', desc: 'Foggy' },
+                                    51: { icon: 'fas fa-cloud-rain', desc: 'Drizzle' },
+                                    53: { icon: 'fas fa-cloud-rain', desc: 'Drizzle' },
+                                    55: { icon: 'fas fa-cloud-rain', desc: 'Drizzle' },
+                                    61: { icon: 'fas fa-cloud-rain', desc: 'Rain' },
+                                    63: { icon: 'fas fa-cloud-rain', desc: 'Rain' },
+                                    65: { icon: 'fas fa-cloud-rain', desc: 'Rain' },
+                                    80: { icon: 'fas fa-cloud-rain', desc: 'Showers' },
+                                    81: { icon: 'fas fa-cloud-rain', desc: 'Showers' },
+                                    82: { icon: 'fas fa-cloud-rain', desc: 'Showers' },
+                                    85: { icon: 'fas fa-snow', desc: 'Snow' },
+                                    86: { icon: 'fas fa-snow', desc: 'Snow' },
+                                    95: { icon: 'fas fa-bolt', desc: 'Thunderstorm' },
+                                    96: { icon: 'fas fa-bolt', desc: 'Thunderstorm' },
+                                    99: { icon: 'fas fa-bolt', desc: 'Thunderstorm' }
+                                };
+                                
+                                const weather = weatherMap[weatherCode] || { icon: 'fas fa-cloud', desc: 'Unknown' };
+                                const weatherIcon = document.querySelector('.weather i');
+                                weatherIcon.className = weather.icon;
+                                document.querySelector('.weather span').textContent = `${temp}°F - ${weather.desc}`;
+                            })
+                            .catch(() => {
+                                document.querySelector('.weather span').textContent = 'Unable to load';
+                            });
+                    },
+                    () => {
+                        document.querySelector('.weather span').textContent = 'Location denied';
+                    }
+                );
+            }
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+        fetchWeather();
+
+        const randomId = Math.floor(Math.random() * 10000);
+        document.body.style.backgroundImage = `url('https://4kwallpapers.com/images/walls/thumbs_3t/25387.jpg')`;
+    </script>
+</body>
+</html>
